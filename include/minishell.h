@@ -74,6 +74,8 @@ void				remove_empty_token_nodes(t_token **head);
 void				clear_token_lst(t_token **lst, int reset);
 void				token_lst_remove_if(t_token **head);
 char				*find_env_in_lst(t_list *env_node, char *env);
+char				**find_env_node(t_list *env_node, char *env);
+void				remove_env_in_lst(t_list **lst, char *key);
 
 // PARSER
 
@@ -103,6 +105,15 @@ char				*expander(char *line, t_list *env);
 
 // BUILTINS
 
+int					my_cd(t_token *token);
+int					my_echo(t_token *token);
+int					my_env(t_token *token);
+void				my_exit(t_token **token, t_list **env_lst);
+int					my_exit_pipe(t_token **token, t_list **env_lst);
+int					my_export(t_token *token);
+int					my_pwd(t_token *token);
+int					my_unset(t_token *token, t_list **env);
+
 // EXECUTOR
 
 // SIGNALS
@@ -116,6 +127,12 @@ int					count_word_len(char *line);
 int					count_commands(t_token *node);
 int					is_redirect(int token_type);
 int					count_decimal(int n);
+int					update_env(t_list *env_lst, char *key, char *new_value);
+int					validate_arguments(t_token *token);
+int					is_valid_numeric_string(char *s);
+void				destroy_matrix(char **matrix);
+char	**convert_commands_to_array_matrix(t_token *token); // implement
+void	wait_commands(t_token *token);                      // implement
 
 // PROMPT
 

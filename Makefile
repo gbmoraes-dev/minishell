@@ -1,10 +1,13 @@
 NAME = minishell
 
 SRCS =	main.c utils/parser_utils.c utils/expander_utils.c
-SRCS += utils/prompt.c parser/parser.c parser/lexer.c
-SRCS += parser/analysis.c parser/quotes.c parser/tokenize.c
-SRCS += list/env_lst.c list/lst_clear.c list/node.c
-SRCS += list/token_lst.c expander/expander.c signals/signal.c
+SRCS += utils/builtins_utils.c utils/prompt.c parser/parser.c
+SRCS += parser/lexer.c parser/analysis.c parser/quotes.c
+SRCS += parser/tokenize.c list/env_lst.c list/lst_clear.c
+SRCS += list/node.c list/token_lst.c expander/expander.c
+SRCS += signals/signal.c builtins/cd.c builtins/echo.c
+SRCS += builtins/env.c builtins/exit.c builtins/export.c
+SRCS += builtins/pwd.c builtins/unset.c
 
 SRCS := $(addprefix ./src/, $(SRCS))
 
