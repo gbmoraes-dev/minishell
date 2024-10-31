@@ -1,0 +1,72 @@
+#include "../../include/minishell.h"
+
+static int	cd_with_params(t_token *token);
+static int	cd_without_params(t_token *token);
+
+int	my_cd(t_token *token)
+{
+	int	status;
+
+	if (token->next && token->next->next && token->next->next->type != WORD)
+	{
+		ft_putstr_fd("minishell: too many arguments for cd\n", token->fd_out);
+		return (1);
+	}
+	if (token->next && token->next->type == WORD)
+		status = cd_with_params(token);
+	else
+		status = cd_without_params(token);
+	return (status);
+}
+
+static int	cd_with_params(t_token *token)
+{
+	char	*pwd;
+
+	if (validate_arguments(token))
+	{
+		ft_putstr_fd("minishell: too many arguments for cd\n", STDERR_FILENO);
+		return (1);
+	}
+	pwd = getcwd(NULL, 0);
+	if (chdir(token->next->content) == -1)
+	{
+		ft_putstr_fd("minishell: no such file or dir for cd\n", STDERR_FILENO);
+		free(pwd);
+		return (1);
+	}
+	if (update_env(token->env_lst, "OLDPWD=", pwd) != 0)
+	{
+		free(pwd);
+		return (1);
+	}
+	free(pwd);
+	pwd = getcwd(NULL, 0);
+	if (update_env(token->env_lst, "PWD=", pwd) != 0)
+		return (1);
+	free(pwd);
+	return (0);
+}
+
+static int	cd_without_params(t_token *token)
+{
+	char	*pwd;
+
+	pwd = getcwd(NULL, 0);
+	if (chdir(find_env_in_lst(token->env_lst, "HOME")) == -1)
+	{
+		ft_putstr_fd("minishell: no such file or dir for cd\n", token->fd_out);
+		free(pwd);
+		return (1);
+	}
+	if (update_env(token->env_lst, "OLDPWD=", pwd) != 0)
+	{
+		free(pwd);
+		return (1);
+	}
+	pwd = getcwd(NULL, 0);
+	if (update_env(token->env_lst, "PWD=", pwd) != 0)
+		return (1);
+	free(pwd);
+	return (0);
+}
