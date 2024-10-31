@@ -24,8 +24,8 @@ RM = rm -f
 
 CFLAGS = -Wall -Wextra -Werror
 
-MSG1 = @echo "42@compile ✔️\nCompiled and now is working! 🚂💨"
-MSG2 = @echo "42@cleaned ✔️\nWe cleaned the floor and now there's no .o files! 🧹"
+MSG1 = @echo "\n42@compile ✔️\nCompiled and now is working! 🚂💨"
+MSG2 = @echo "\n42@cleaned ✔️\nWe cleaned the floor and now there's no .o files! 🧹"
 
 $(NAME): $(OBJECTS)
 		@ar rcs $(NAME) $(OBJECTS)

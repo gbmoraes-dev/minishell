@@ -107,15 +107,18 @@ char				*expander(char *line, t_list *env);
 
 // SIGNALS
 
-void				set_sighandle(void);
-void				sigint_handle(int signal);
+void				signals_handler(void);
+void				sigint_handler(int signal);
 
 // UTILS
 
-char				*prompt(void);
 int					count_word_len(char *line);
 int					count_commands(t_token *node);
 int					is_redirect(int token_type);
 int					count_decimal(int n);
+
+// PROMPT
+
+char				*prompt(t_list *env);
 
 #endif
