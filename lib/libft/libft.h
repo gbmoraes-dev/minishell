@@ -6,7 +6,7 @@
 /*   By: gamoraes <gamoraes@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 13:18:12 by gamoraes          #+#    #+#             */
-/*   Updated: 2024/10/30 22:21:52 by gamoraes         ###   ########.fr       */
+/*   Updated: 2024/10/31 19:39:29 by gamoraes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ int					ft_ismeta(char *c);
 
 typedef struct s_list
 {
-	void			*content;
+	char			*content;
 	struct s_list	*next;
 }					t_list;
 
