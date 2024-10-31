@@ -2,9 +2,10 @@
 
 // ---------------------------------------------------------------------------
 
-// TESTE DE EXPANSÃO DE VARIÁVEIS DE AMBIENTE
-
 /*
+
+// TESTE TOKENIZAÇÃO
+
 unsigned int	g_exit_status = 0;
 
 static void	print_token_list(t_token *token_lst)
@@ -21,39 +22,40 @@ static void	print_token_list(t_token *token_lst)
 
 int	main(void)
 {
+	char	*line;
 	t_list	*env_lst;
 	t_token	*token_lst;
-	char	*input;
 
 	env_lst = new_env_lst();
-	if (!env_lst)
-		return (1);
+	token_lst = NULL;
+	signals_handler();
 	while (1)
 	{
-		input = readline("minishell> ");
-		if (!input)
+		line = prompt(env_lst);
+		if (!line)
+		{
+			ft_putstr_fd(RED "\nminishell: logging out\n" RESET, STDOUT_FILENO);
 			break ;
-		add_history(input);
-		if (validate_quotes(input))
+		}
+		add_history(line);
+		if (validate_quotes(line))
 		{
 			printf("Error: Unclosed quotes\n");
-			free(input);
+			free(line);
 			continue ;
 		}
-		token_lst = new_token_lst(input, env_lst);
-		free(input);
-		// Realiza análise léxica e sintática
+		token_lst = new_token_lst(line, env_lst);
+		free(line);
 		if (lexer(&token_lst))
 		{
 			clear_token_lst(&token_lst, 1);
 			continue ;
 		}
 		print_token_list(token_lst);
-		// Limpa a lista de tokens
 		clear_token_lst(&token_lst, 1);
 	}
 	ft_lstclear(&env_lst, free);
-	printf("\nGoodbye!\n");
+	return (0);
 }
 */
 
@@ -61,7 +63,7 @@ int	main(void)
 
 /*
 
-// TESTE TOKENIZAÇÃO
+// TESTE DE EXPANSÃO DE VARIÁVEIS DE AMBIENTE
 
 unsigned int	g_exit_status = 0;
 
