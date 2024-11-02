@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   analysis.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gamoraes <gamoraes@student.42.rio>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/11/01 22:07:09 by gamoraes          #+#    #+#             */
+/*   Updated: 2024/11/01 22:07:10 by gamoraes         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../include/minishell.h"
 
 int	lexical_analysis(t_token **token_lst)
@@ -42,7 +54,7 @@ int	command_syntax_analysis(t_token *token_lst)
 		if (count_commands(token_lst) == 0)
 		{
 			ft_putstr_fd("Syntax error: sentence with no commands\n",
-							STDERR_FILENO);
+				STDERR_FILENO);
 			return (1);
 		}
 		while (token_lst && token_lst->type != PIPE)

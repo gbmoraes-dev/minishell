@@ -1,12 +1,24 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gamoraes <gamoraes@student.42.rio>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/11/01 21:58:03 by gamoraes          #+#    #+#             */
+/*   Updated: 2024/11/01 21:58:04 by gamoraes         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/minishell.h"
 
 unsigned int	g_exit_status;
 
 int	main(void)
 {
-	char *line;
-	t_list *env_lst;
-	t_token *token_lst;
+	char		*line;
+	t_list		*env_lst;
+	t_token		*token_lst;
 
 	env_lst = new_env_lst();
 	token_lst = NULL;

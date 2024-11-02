@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   redirections.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gamoraes <gamoraes@student.42.rio>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/11/01 22:08:26 by gamoraes          #+#    #+#             */
+/*   Updated: 2024/11/01 22:08:27 by gamoraes         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../include/minishell.h"
 
 int	redirect_in(t_token *token)
@@ -41,12 +53,10 @@ int	redirect_out(t_token *token)
 				close(head->fd_out);
 			if (token->type == REDIRECT_OUT)
 				head->fd_out = open(token->next->content,
-									O_WRONLY | O_CREAT | O_TRUNC,
-									0777);
+						O_WRONLY | O_CREAT | O_TRUNC, 0777);
 			else
 				head->fd_out = open(token->next->content,
-									O_WRONLY | O_CREAT | O_APPEND,
-									0777);
+						O_WRONLY | O_CREAT | O_APPEND, 0777);
 			if (head->fd_out == -1)
 				return (-1);
 		}

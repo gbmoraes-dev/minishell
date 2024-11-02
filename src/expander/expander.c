@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   expander.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gamoraes <gamoraes@student.42.rio>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/11/01 22:07:36 by gamoraes          #+#    #+#             */
+/*   Updated: 2024/11/01 22:07:37 by gamoraes         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../include/minishell.h"
 
 char	*expander(char *line, t_list *env)
@@ -5,7 +17,7 @@ char	*expander(char *line, t_list *env)
 	char	*expanded_line;
 
 	expanded_line = ft_calloc(count_len_after_expansion(line, env) + 1,
-								sizeof(char));
+			sizeof(char));
 	if (!expanded_line)
 		return (NULL);
 	process_env_expansion(line, expanded_line, env);
@@ -63,7 +75,7 @@ void	expand_specific_env(char *line, char *expanded_line,
 				count_env_name_len(&line[position->i]));
 		env_len = ft_strlen(find_env_in_lst(env, value));
 		ft_memcpy(&expanded_line[position->j], find_env_in_lst(env, value),
-				env_len);
+			env_len);
 	}
 	position->i += count_env_name_len(&line[position->i]) + 1;
 	position->j += env_len;

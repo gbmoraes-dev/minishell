@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   builtins_utils.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gamoraes <gamoraes@student.42.rio>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/11/01 22:06:38 by gamoraes          #+#    #+#             */
+/*   Updated: 2024/11/01 22:06:39 by gamoraes         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../include/minishell.h"
 
 int	update_env(t_list *env_lst, char *key, char *new_value)
@@ -18,8 +30,8 @@ int	update_env(t_list *env_lst, char *key, char *new_value)
 
 int	validate_arguments(t_token *token)
 {
-	return (token && token->next && token->next->type == WORD &&
-			token->next->next && token->next->next->type == WORD);
+	return (token && token->next && token->next->type == WORD
+		&& token->next->next && token->next->next->type == WORD);
 }
 
 int	is_valid_numeric_string(char *s)
