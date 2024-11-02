@@ -116,6 +116,26 @@ int					my_unset(t_token *token, t_list **env);
 
 // EXECUTOR
 
+int					redirect_in(t_token *token);
+int					redirect_out(t_token *token);
+int					heredoc(t_token *token);
+int					make_redirect(t_token *token);
+int					is_builtin(t_token *token);
+int					find_pipe(t_token *token);
+int					my_pipe(t_token *token);
+int					exec_command(t_token *token, t_list *env_lst);
+int					exec(t_token **token, t_list **env_lst, int should_clean);
+char				*validate_exec(char *command, t_list *env_lst);
+void				exec_piped_command(t_token *token, t_list *env_lst);
+void				exec_whitout_pipe(t_token *token, t_list **env_lst);
+void				exec_builtin(t_token *token, t_list **env_lst, int builtin);
+t_token				*clean_redirections(t_token **token, int should_clean);
+void				exec_pipe(t_token *token, t_list **env_lst);
+void				exec_pipe_builtin(t_token *token, t_list **env_lst,
+						int builtin);
+void				close_pipe(int *fd);
+void				close_all_fd(t_token *token);
+
 // SIGNALS
 
 void				signals_handler(void);
@@ -131,8 +151,12 @@ int					update_env(t_list *env_lst, char *key, char *new_value);
 int					validate_arguments(t_token *token);
 int					is_valid_numeric_string(char *s);
 void				destroy_matrix(char **matrix);
-char	**convert_commands_to_array_matrix(t_token *token); // implement
-void	wait_commands(t_token *token);                      // implement
+char				**convert_env_lst_to_array_matrix(t_list *env_lst);
+char				**convert_commands_to_array_matrix(t_token *token);
+void				wait_commands(t_token *token);
+void				close_fd(t_token *token);
+t_token				*find_next_command(t_token *token);
+t_token				**find_next_command_address(t_token *token);
 
 // PROMPT
 
