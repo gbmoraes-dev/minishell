@@ -6,7 +6,7 @@
 /*   By: gamoraes <gamoraes@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 22:05:49 by gamoraes          #+#    #+#             */
-/*   Updated: 2024/11/04 03:01:39 by gamoraes         ###   ########.fr       */
+/*   Updated: 2024/11/06 15:32:01 by gamoraes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,6 @@ char	*prompt(int get_buffer)
 	shell_prompt = ft_strjoin(shell_prompt, "@minishell $> ", 1);
 	shell_prompt = ft_strjoin(shell_prompt, RESET, 1);
 	buffer = readline(shell_prompt);
-	if (buffer && *buffer)
-		add_history(buffer);
 	free(shell_prompt);
 	return (buffer);
 }
